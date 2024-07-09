@@ -4,7 +4,7 @@ If you want to contribute to improving the project, use following instructions t
 
 ## Creating an issue
 
-If you found a bug or want to make an improvement in the project please check whether the same issue already exists in the [list of issues](). If you don’t find the issue [there](), create a new one including a description of the problem.
+If you found a bug or want to make an improvement in the project please check whether the same issue already exists in the [list of issues](https://github.com/perkinson1251/law-enforcement-toolkit/issues). If you don’t find the issue [there](https://github.com/perkinson1251/law-enforcement-toolkit/issues), create a new one including a description of the problem.
 
 ## Commit rules
 

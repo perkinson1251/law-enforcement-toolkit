@@ -39,11 +39,11 @@ Examples of usage and commands will be added here. Stay tuned!
 
 ## Contributing
 
-All contributions are welcomed, but firstly read our [Contribution Guidelines]().
+All contributions are welcomed, but firstly read our [Contribution Guidelines](https://github.com/perkinson1251/law-enforcement-toolkit/blob/main/CONTRIBUTING.md).
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is [GNU GPLv3.0 licenced](https://github.com/perkinson1251/law-enforcement-toolkit/blob/main/LICENSE)
 
 ## Contact Information
 
