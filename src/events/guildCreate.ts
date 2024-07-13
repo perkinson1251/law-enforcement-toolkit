@@ -1,5 +1,5 @@
 import ServerSettingsModel from "@/models/ServerSettings";
-import { deployCommands } from "@/utils/deployCommands";
+import deployCommands from "@/utils/deployCommands";
 import logger from "@/utils/logger";
 import { Guild } from "discord.js";
 

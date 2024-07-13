@@ -1,17 +1,15 @@
 import { config } from "@/config";
+import connectDB from "@/database/connectDb";
 import registerEvents from "@/events";
 import logger from "@/utils/logger";
 import { Client, GatewayIntentBits } from "discord.js";
-import connectDB from "./database/connectDb";
-
-import { scrapeWebsite } from "@/utils/scraper";
 
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildMembers,
   ],
 });
 
@@ -21,8 +19,6 @@ client.once("ready", async () => {
 });
 
 registerEvents(client);
-
-scrapeWebsite();
 
 client.login(config.discordToken);
 
