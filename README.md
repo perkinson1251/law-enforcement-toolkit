@@ -9,7 +9,7 @@
 
 ## Installation
 
-1. **Install Node.js and pnpm**: Make sure you have [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) installed on your machine.
+1. **Install Node.js and pnpm**: Make sure you have [Node.js](https://nodejs.org/), [pnpm](https://pnpm.io/) and MongoDB installed on your machine.
 2. **Clone the Repository**:
    ```sh
    git clone

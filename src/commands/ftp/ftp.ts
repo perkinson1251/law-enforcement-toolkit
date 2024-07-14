@@ -1,4 +1,4 @@
-import QueueChannelModel from "@/models/QueueChannel";
+import QueueChannel from "@/models/QueueChannel";
 import { generateFtpPanel } from "@/utils/ftp/generateFtpPanel";
 import logger from "@/utils/logger";
 import {
@@ -18,7 +18,7 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction: CommandInteraction) {
   const guildId = interaction.guild!.id;
   try {
-    let queueChannelInfo = await QueueChannelModel.findOne({ guildId });
+    let queueChannelInfo = await QueueChannel.findOne({ guildId });
 
     if (queueChannelInfo && queueChannelInfo.channelId) {
       const existingChannel = await interaction.guild!.channels.fetch(
@@ -39,7 +39,7 @@ export async function execute(interaction: CommandInteraction) {
               "FTP panel, maybe, doesn't exist. Deleting database record. Error: ",
               error
             );
-            QueueChannelModel.deleteOne({ guildId });
+            QueueChannel.deleteOne({ guildId });
           }
         }
       }
@@ -78,7 +78,7 @@ export async function execute(interaction: CommandInteraction) {
     });
 
     if (!queueChannelInfo) {
-      queueChannelInfo = new QueueChannelModel({
+      queueChannelInfo = new QueueChannel({
         guildId,
         channelId: (sentMessage as Message).channel.id,
         messageId: (sentMessage as Message).id,
@@ -95,7 +95,7 @@ export async function execute(interaction: CommandInteraction) {
 }
 
 export async function getQueueChannel(guildId: string): Promise<string | null> {
-  const queueChannelInfo = await QueueChannelModel.findOne({ guildId });
+  const queueChannelInfo = await QueueChannel.findOne({ guildId });
   if (!queueChannelInfo || !queueChannelInfo.channelId) {
     return null;
   }

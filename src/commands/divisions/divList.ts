@@ -1,4 +1,4 @@
-import DivisionSchema from "@/models/Division";
+import Division from "@/models/Division";
 import logger from "@/utils/logger";
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
@@ -10,7 +10,7 @@ export async function execute(interaction: CommandInteraction) {
   const guildId = interaction.guild!.id;
 
   try {
-    const divisions = await DivisionSchema.find({ guildId });
+    const divisions = await Division.find({ guildId });
     if (divisions.length === 0) {
       await interaction.reply({
         content: "На этом сервере нет созданных дивизионов.",

@@ -1,4 +1,4 @@
-import ServerSettingsModel from "@/models/ServerSettings";
+import ServerSettings from "@/models/ServerSettings";
 import deployCommands from "@/utils/deployCommands";
 import updateQueues from "@/utils/ftp/updateQueues";
 import logger from "@/utils/logger";
@@ -8,11 +8,11 @@ export default async (client: Client): Promise<void> => {
   try {
     const guilds = await client.guilds.fetch();
     for (const guild of guilds.values()) {
-      const existingSettings = await ServerSettingsModel.findOne({
+      const existingSettings = await ServerSettings.findOne({
         guildId: guild.id,
       });
       if (!existingSettings) {
-        await ServerSettingsModel.create({ guildId: guild.id });
+        await ServerSettings.create({ guildId: guild.id });
         logger.info(`Server settings created for guild: ${guild.id}`);
       }
       await deployCommands({ guildId: guild.id });

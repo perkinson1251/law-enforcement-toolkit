@@ -1,10 +1,5 @@
 import commands from "@/commands";
 import { handleCalloutButtons } from "@/handlers/callouts/calloutButtonsHandler";
-import { handleSubmitCalloutDeBriefForm } from "@/handlers/callouts/calloutDeBriefFormHandler";
-import { handleSubmitCalloutForm } from "@/handlers/callouts/calloutFormHandler";
-import { handleSelectDivisionForCallout } from "@/handlers/callouts/selectDivForCalloutHandler";
-import { handleSelectCalloutStatus } from "@/handlers/callouts/selectStatusHandler";
-import { handleDeleteDivisionSelectMenuInteraction } from "@/handlers/divisions/chooseDivHandler";
 import { handleFtpButtons } from "@/handlers/ftp/ftpButtonsHandler";
 import logger from "@/utils/logger";
 import { ButtonInteraction, Interaction } from "discord.js";
@@ -50,20 +45,10 @@ export default async (interaction: Interaction): Promise<void> => {
 
   if (interaction.isStringSelectMenu()) {
     const customId = interaction.customId;
-    const calloutId = customId.split("-").pop();
     try {
       switch (customId) {
-        case "delete-selected-division":
-          await handleDeleteDivisionSelectMenuInteraction(interaction);
-          break;
-        case "select-division-for-callout":
-          await handleSelectDivisionForCallout(interaction);
-          break;
-        case `select-status-${calloutId}`:
-          await handleSelectCalloutStatus(interaction, calloutId!);
-          break;
         default:
-          logger.error(`Unhandled select menu: ${customId}`);
+          logger.info(`Select menu submit: ${customId}`);
           break;
       }
     } catch (error) {
@@ -80,17 +65,11 @@ export default async (interaction: Interaction): Promise<void> => {
 
   if (interaction.isModalSubmit()) {
     const customId = interaction.customId;
-    const calloutId = customId.split("-").pop();
     try {
       switch (customId) {
-        case "callout-info-modal":
-          await handleSubmitCalloutForm(interaction);
-          break;
-        case `callout-debrief-${calloutId}`:
-          await handleSubmitCalloutDeBriefForm(interaction, calloutId!);
-          break;
         default:
-          logger.info(`Unhandled modal submit: ${customId}`);
+          logger.info(`Modal submit: ${customId}`);
+          break;
       }
     } catch (error) {
       logger.error(

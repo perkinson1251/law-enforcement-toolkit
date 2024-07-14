@@ -14,9 +14,6 @@ export default async function updateQueues(client: Client) {
 
       const channelID = await getQueueChannel(guildId);
       if (!channelID) {
-        logger.warn(
-          `Queue channel is null for guild ${guildId}, cannot update queue message.`
-        );
         return;
       }
 

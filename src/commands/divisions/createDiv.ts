@@ -1,4 +1,4 @@
-import DivisionModel from "@/models/Division";
+import Division from "@/models/Division";
 import isAdmin from "@/utils/isAdmin";
 import { CommandInteraction, Role, SlashCommandBuilder } from "discord.js";
 import logger from "utils/logger";
@@ -39,7 +39,7 @@ export async function execute(interaction: CommandInteraction) {
   const logoUrl = interaction.options.get("logo")?.value as string | undefined;
 
   try {
-    const existingDivision = await DivisionModel.findOne({
+    const existingDivision = await Division.findOne({
       guildId,
       roleId: role.id,
     });
@@ -50,7 +50,7 @@ export async function execute(interaction: CommandInteraction) {
       });
       return;
     }
-    const division = new DivisionModel({
+    const division = new Division({
       guildId,
       roleId: role.id,
       name,

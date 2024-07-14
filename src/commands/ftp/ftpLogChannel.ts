@@ -1,4 +1,4 @@
-import ServerSettingsModel from "@/models/ServerSettings";
+import ServerSettings from "@/models/ServerSettings";
 import { IServerSettings } from "@/types";
 import isAdmin from "@/utils/isAdmin";
 import {
@@ -47,10 +47,9 @@ export async function execute(interaction: CommandInteraction) {
   const offOption = options.getBoolean("option", false);
 
   try {
-    let serverSettings: IServerSettings | null =
-      await ServerSettingsModel.findOne({
-        guildId,
-      });
+    let serverSettings: IServerSettings | null = await ServerSettings.findOne({
+      guildId,
+    });
 
     if (offOption) {
       if (serverSettings && serverSettings.ftpLogChannelId) {
@@ -70,7 +69,7 @@ export async function execute(interaction: CommandInteraction) {
       const channelId = channelOption.id;
 
       if (!serverSettings) {
-        serverSettings = new ServerSettingsModel({
+        serverSettings = new ServerSettings({
           guildId,
           ftpLogChannelId: channelId,
         });
